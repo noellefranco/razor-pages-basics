@@ -1,5 +1,5 @@
 ﻿@page
-@model MyRazorApp.Pages.IndexModel
+@model IndexModel
 
 <!DOCTYPE html> 
 
@@ -9,10 +9,27 @@
     </head>
     <body>
         <div>
-            @for(var i = 0; i <= 10; i++)
-            {
-                <p>Item @i</p>
-            }
+        <partial name="Shared/NavMenuPartial" />
+            <h1>Categories</h1>
+            <table>
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>Title</td>
+                        <td>Price</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var category in Model.Categories)
+                    {
+                      <tr>
+                         <td>@category.Id</td>
+                          <td>@category.Title</td>
+                          <td>@category.Price.ToString(format:"C", provider: new CultureInfo("en-US"))</td>
+                      </tr>
+                    }
+                </tbody>
+            </table>
         </div>
     </body>
 </html>
